@@ -27,7 +27,7 @@ class BooksSpider(scrapy.Spider):
 
         texts = response.css("p.instock.availability::text").getall()
         cleaned = " ".join(t.strip() for t in texts if t.strip())
-        m = re.search(r"((\d+)\s+available)", cleaned)
+        m = re.search(r"(\d+)\s+available", cleaned)
         amount_in_stock = int(m.group(1)) if m else None
 
         rating_class = response.css("p.star-rating::attr(class)").get()
